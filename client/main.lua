@@ -10,21 +10,6 @@ Citizen.CreateThread(function()
     })   
 end)
 
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(1)
-		if Config.EnablePanicButton then
-			if Config.EnablePanicButtonKey then
-				if IsControlJustReleased(0, Config.PanicButtonKey) then
-					local player = PlayerPedId()
-					local playerCoords = GetEntityCoords(player)
-					TriggerServerEvent('PGRP_COPCOMMANDS:PanicButtonPressed', playerCoords)
-				end
-			end
-		end
-	end
-end)
-
 RegisterNetEvent('PGRP_COPCOMMANDS:PanicButtonAlert')
 AddEventHandler('PGRP_COPCOMMANDS:PanicButtonAlert', function(playerName, coords)
     local streetName, crossingRoad = GetStreetNameAtCoord(coords.x, coords.y, coords.z)
